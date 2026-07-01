@@ -48,3 +48,5 @@ E account named Edge
 Modify the generated report so that the header  for each account includes the Total Loss, and Total Profit for that account.
 Also the final Profit/Loss  table should include  one column for the total of  losses and one column for the total of profits for that account.
 Also, if the user passes the parameters OBT then each report should be ordered by ticker name
+# new instructions #5
+ - Modify genarate_indiv_report.py so that if the app is passed parameters'OBT' then the report name have the letters 'OBT' after the date portion

@@ -44,3 +44,5 @@ I have creat3ed an Excel file containing my Stock values and performances. It is
   - Modify generate_report.py: add a new column called Rating. This column shoulf be to the left of the ticker column. The value in this column should be   in column B of the current row. Also the file name should start with profit_ and not profi_
   # new instructions #6
   - Modify genarate_report.py : write the report to the 'output' directory in the parent directory of the file directory
+  # new instructions #7
+ - Modify genarate_report.py so that if the app is passed parameters'OBT' then the report name have the letters 'OBT' after the date portion

@@ -39,6 +39,10 @@ New instructions #5:
 New instructions #6:
 - Write the report to the 'output' directory located in the PARENT directory of
   this script's directory (i.e. ../output relative to this file).
+
+New instructions #7:
+- When the 'OBT' parameter is passed, append the letters 'OBT' after the date
+  portion of the report name (e.g. profit_loss_YYYY_MM_DD-HH-MM_OBT.pdf).
 """
 
 import os
@@ -189,7 +193,10 @@ def main():
     now = datetime.now()
     # Requested pattern: profit_loss_YYYY_MM_DD:HH:MM.pdf -> ':' is illegal on
     # Windows, so colons are replaced with dashes.
-    filename = f"profit_loss_{now:%Y_%m_%d-%H-%M}.pdf"
+    # New instructions #7: when 'OBT' is passed, append 'OBT' after the date
+    # portion of the report name (e.g. profit_loss_YYYY_MM_DD-HH-MM_OBT.pdf).
+    obt_tag = "_OBT" if order_by_ticker else ""
+    filename = f"profit_loss_{now:%Y_%m_%d-%H-%M}{obt_tag}.pdf"
     out_path = os.path.join(OUTPUT_DIR, filename)
 
     doc = SimpleDocTemplate(

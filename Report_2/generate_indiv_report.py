@@ -36,6 +36,10 @@ Rows are ordered ascending by Profit / Loss (largest losses first - new
 instructions #2). A per-account summary is appended so profit / loss can be
 read per account (E, N, R).
 
+New instructions #5:
+- When the 'OBT' parameter is passed, append the letters 'OBT' after the date
+  portion of the report name (e.g. profit_loss_Individual_YYYY_MM_DD-HH-MM_OBT.pdf).
+
 Output: written READ ONLY from the source workbook to the 'output' folder in
 the PARENT directory of this script's directory, named
 profit_loss_Individual_YYYY_MM_DD-HH-MM.pdf.
@@ -182,7 +186,10 @@ def main():
     now = datetime.now()
     # Requested pattern: profit_loss_Individual_YYYY_MM_DD:HH:MM.pdf -> ':' is
     # illegal on Windows, so colons are replaced with dashes.
-    filename = f"profit_loss_Individual_{now:%Y_%m_%d-%H-%M}.pdf"
+    # New instructions #5: when 'OBT' is passed, append 'OBT' after the date
+    # portion (e.g. profit_loss_Individual_YYYY_MM_DD-HH-MM_OBT.pdf).
+    obt_tag = "_OBT" if order_by_ticker else ""
+    filename = f"profit_loss_Individual_{now:%Y_%m_%d-%H-%M}{obt_tag}.pdf"
     out_path = os.path.join(OUTPUT_DIR, filename)
 
     doc = SimpleDocTemplate(
